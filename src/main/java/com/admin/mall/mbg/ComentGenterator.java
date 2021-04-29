@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.Properties;
 
 /**
+ * 自定义注解生成器
  * @author Lyy
  * @date 2020/12/19 11:21
  **/
@@ -22,7 +23,7 @@ public class ComentGenterator extends DefaultCommentGenerator {
 
     //设置用户配置的参数
     @Override
-    public void   addConfigurationProperties (Properties properties){
+    public void addConfigurationProperties (Properties properties){
         super.addConfigurationProperties(properties);
         this.addRemarkComments = StringUtility.isTrue(properties.getProperty("addRemarkComments"));
 
@@ -63,7 +64,7 @@ public class ComentGenterator extends DefaultCommentGenerator {
     }
 
 
-    public void addFieldComment(CompilationUnit compilationUnit){
+    public void addJavaFieldComment(CompilationUnit compilationUnit){
         super.addJavaFileComment(compilationUnit);
         //只在model中添加swagger注解类的导入
         if(!compilationUnit.isJavaInterface()&&!compilationUnit.getType().getFullyQualifiedName().contains(EXAMPLE_SUFFIX)){
